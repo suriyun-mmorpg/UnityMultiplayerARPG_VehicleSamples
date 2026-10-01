@@ -13,7 +13,7 @@ Use the kit's **Activate**, **ExitVehicle** and **CameraRotate** bindings for bo
 | Vehicle | Controls |
 | --- | --- |
 | Car | A/D steering; W gas; S brake/reverse; Space handbrake |
-| Aircraft | A/D roll; W nose down; S nose up; Q/E yaw |
+| Aircraft | A/D roll; W nose down; S nose up; `,` yaw left; `.` yaw right |
 | Aircraft engine | Hold Left Shift to increase throttle, Left Ctrl to decrease; Space applies airbrakes and wheel brakes |
 
 Aircraft throttle holds its selected position while flying. Hold Shift to reach full throttle, accelerate along the runway, then hold S to rotate and climb. Avoid excessive pitch and reduce power for landing. Focus loss, UI input blocking, leaving the seat and input timeout cut the engine and apply brakes. An airborne unoccupied aircraft continues falling/gliding under server physics; it is not frozen in midair.

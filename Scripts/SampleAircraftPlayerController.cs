@@ -37,11 +37,11 @@ namespace MultiplayerARPG
                     var keyboard = UnityEngine.InputSystem.Keyboard.current;
                     if (keyboard != null)
                     {
-                        yaw = (keyboard.eKey.isPressed ? 1f : 0f) - (keyboard.qKey.isPressed ? 1f : 0f);
+                        yaw = (keyboard.periodKey.isPressed ? 1f : 0f) - (keyboard.commaKey.isPressed ? 1f : 0f);
                         throttleChange = (keyboard.leftShiftKey.isPressed ? 1f : 0f) - (keyboard.leftCtrlKey.isPressed ? 1f : 0f);
                     }
 #elif ENABLE_LEGACY_INPUT_MANAGER
-                    yaw = (Input.GetKey(KeyCode.E) ? 1f : 0f) - (Input.GetKey(KeyCode.Q) ? 1f : 0f);
+                    yaw = (Input.GetKey(KeyCode.Period) ? 1f : 0f) - (Input.GetKey(KeyCode.Comma) ? 1f : 0f);
                     throttleChange = (Input.GetKey(KeyCode.LeftShift) ? 1f : 0f) - (Input.GetKey(KeyCode.LeftControl) ? 1f : 0f);
 #endif
                 }
