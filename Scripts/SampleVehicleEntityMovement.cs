@@ -57,6 +57,7 @@ namespace MultiplayerARPG
         private float _snapshotTransitTime;
         private bool _predicting;
         private bool _simulating;
+        private RigidbodyInterpolation _simulationInterpolation;
         private bool _serverSimulationEnabled;
         private long _snapshotOwnerId = long.MinValue;
         private uint _snapshotDriverId;
@@ -80,6 +81,7 @@ namespace MultiplayerARPG
             PhysicsController = GetComponent<SampleVehiclePhysics>();
             PhysicsController.Initialize();
             Body = GetComponent<Rigidbody>();
+            _simulationInterpolation = Body.interpolation;
             _wheels = PhysicsController.Wheels;
             _wheelColliders = GetComponentsInChildren<WheelCollider>(true);
             _wheelPositions = new Vector3[_wheels.Length];
@@ -187,6 +189,7 @@ namespace MultiplayerARPG
                 Body.angularVelocity = Vector3.zero;
             }
             Body.isKinematic = !simulate;
+            Body.interpolation = simulate ? _simulationInterpolation : RigidbodyInterpolation.None;
             PhysicsController.SetSimulation(simulate);
         }
 
@@ -223,18 +226,32 @@ namespace MultiplayerARPG
                 Body.AddForce(forceVelocity * Time.fixedDeltaTime, ForceMode.VelocityChange);
         }
 
-        private void LateUpdate()
+        private void Update()
         {
             if (!_initialized || IsServer || !_hasSnapshot)
                 return;
             RefreshSimulation();
             if (_predicting)
                 return;
-            float factor = 1f - Mathf.Exp(-_interpolationSpeed * Time.deltaTime);
+            UpdateRemoteMovement(Time.deltaTime);
+        }
+
+        private void UpdateRemoteMovement(float deltaTime)
+        {
+            float factor = 1f - Mathf.Exp(-_interpolationSpeed * deltaTime);
             PhysicsController.ApplyTelemetry(_telemetry, _serverVelocity);
-            Body.position = Vector3.Lerp(Body.position, _serverPosition, factor);
-            Body.rotation = Quaternion.Slerp(Body.rotation, _serverRotation, factor);
-            ApplyRemoteVisuals();
+            float lead = _serverSimulationEnabled
+                ? SampleVehiclePrediction.ExtrapolationTime(Time.unscaledTime - _snapshotTime + _snapshotTransitTime, _maxExtrapolation)
+                : 0f;
+            Body.position = Vector3.Lerp(Body.position, _serverPosition + _serverVelocity * lead, factor);
+            Body.rotation = Quaternion.Slerp(Body.rotation,
+                SampleVehiclePrediction.ExtrapolateRotation(_serverRotation, _serverAngularVelocity, lead), factor);
+        }
+
+        private void LateUpdate()
+        {
+            if (_initialized && !IsServer && _hasSnapshot && !_predicting)
+                ApplyRemoteVisuals();
         }
 
         private void ApplyRemoteVisuals()

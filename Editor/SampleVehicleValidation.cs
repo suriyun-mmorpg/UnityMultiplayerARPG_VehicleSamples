@@ -84,6 +84,18 @@ namespace MultiplayerARPG
                 Check(owner.movement.IsPredicting && !owner.movement.Body.isKinematic, "Owner predicts.");
                 Check(!observer.movement.IsPredicting && observer.movement.Body.isKinematic, "Passengers stay kinematic.");
                 Check(Quaternion.Angle(observer.movement.Body.rotation, server.movement.Body.rotation) < 0.01f, "Full pitch/roll snapshot.");
+                Check(observer.movement.Body.interpolation == RigidbodyInterpolation.None, "Observer uses network smoothing only.");
+                Vector3 oldPosition = observer.movement.Body.position;
+                Field(observer.movement, "_serverVelocity").SetValue(observer.movement, Vector3.forward * 20f);
+                Field(observer.movement, "_snapshotTransitTime").SetValue(observer.movement, 0.05f);
+                Field(observer.movement, "_snapshotTime").SetValue(observer.movement, Time.unscaledTime - 0.05f);
+                typeof(SampleVehicleEntityMovement).GetMethod("UpdateRemoteMovement", BindingFlags.NonPublic | BindingFlags.Instance)
+                    .Invoke(observer.movement, new object[] { 1f });
+                Check(observer.movement.Body.position.z > oldPosition.z + 1.5f, "Observer compensates snapshot transit time.");
+                Field(observer.movement, "_snapshotTime").SetValue(observer.movement, Time.unscaledTime - 10f);
+                typeof(SampleVehicleEntityMovement).GetMethod("UpdateRemoteMovement", BindingFlags.NonPublic | BindingFlags.Instance)
+                    .Invoke(observer.movement, new object[] { 1f });
+                Check(observer.movement.Body.position.z <= oldPosition.z + 3.001f, "Packet loss cannot extrapolate indefinitely.");
                 var input = new SampleVehicleInput { throttle = 1, pitch = -0.5f, yaw = 0.25f, steering = 0.5f };
                 var writer = new NetDataWriter();
                 observer.movement.SetInput(input);
