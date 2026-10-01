@@ -1,0 +1,210 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4839638308322318459
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1287010141937558, guid: 147be1283e4eb834d94ad1c905a031e7, type: 3}
+      propertyPath: m_Name
+      value: PlayerCharacterController_Sample
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257762974765350, guid: 147be1283e4eb834d94ad1c905a031e7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257762974765350, guid: 147be1283e4eb834d94ad1c905a031e7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257762974765350, guid: 147be1283e4eb834d94ad1c905a031e7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257762974765350, guid: 147be1283e4eb834d94ad1c905a031e7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257762974765350, guid: 147be1283e4eb834d94ad1c905a031e7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257762974765350, guid: 147be1283e4eb834d94ad1c905a031e7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257762974765350, guid: 147be1283e4eb834d94ad1c905a031e7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257762974765350, guid: 147be1283e4eb834d94ad1c905a031e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257762974765350, guid: 147be1283e4eb834d94ad1c905a031e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4257762974765350, guid: 147be1283e4eb834d94ad1c905a031e7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114096437919969166, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      propertyPath: vehicleControllers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114096437919969166, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      propertyPath: vehicleControllers.Array.data[0].vehicleType
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a9860fd10e6fa34088dbba2c04eda48,
+        type: 2}
+    - target: {fileID: 114096437919969166, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      propertyPath: vehicleControllers.Array.data[1].vehicleType
+      value: 
+      objectReference: {fileID: 11400000, guid: 008e038d757290142b53de8be788fe62,
+        type: 2}
+    - target: {fileID: 114096437919969166, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      propertyPath: vehicleControllers.Array.data[0].controllersForEachSeats.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114096437919969166, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      propertyPath: vehicleControllers.Array.data[1].controllersForEachSeats.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114096437919969166, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      propertyPath: vehicleControllers.Array.data[0].controllersForEachSeats.Array.data[0]
+      value: 
+      objectReference: {fileID: 6469611069234292685}
+    - target: {fileID: 114096437919969166, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      propertyPath: vehicleControllers.Array.data[0].controllersForEachSeats.Array.data[1]
+      value: 
+      objectReference: {fileID: 1221176897345240042}
+    - target: {fileID: 114096437919969166, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      propertyPath: vehicleControllers.Array.data[1].controllersForEachSeats.Array.data[0]
+      value: 
+      objectReference: {fileID: 1918199835100186439}
+    - target: {fileID: 114096437919969166, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      propertyPath: vehicleControllers.Array.data[1].controllersForEachSeats.Array.data[1]
+      value: 
+      objectReference: {fileID: 4630324811495614059}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1287010141937558, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6469611069234292685}
+    - targetCorrespondingSourceObject: {fileID: 1287010141937558, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1221176897345240042}
+    - targetCorrespondingSourceObject: {fileID: 1287010141937558, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1918199835100186439}
+    - targetCorrespondingSourceObject: {fileID: 1287010141937558, guid: 147be1283e4eb834d94ad1c905a031e7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4630324811495614059}
+  m_SourcePrefab: {fileID: 100100000, guid: 147be1283e4eb834d94ad1c905a031e7, type: 3}
+--- !u!1 &4840608604345698285 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1287010141937558, guid: 147be1283e4eb834d94ad1c905a031e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4839638308322318459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6469611069234292685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4840608604345698285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e00203c3470ae346ad1fd9f76ac8151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlsPanel: {fileID: 0}
+  exitVehicleButton: ExitVehicle
+  cameraRotateButton: CameraRotate
+  _steeringAxis: Horizontal
+  _pedalAxis: Vertical
+  _throttleAxis: 
+  _brakeReverseAxis: 
+  _handbrakeButton: Jump
+--- !u!114 &1221176897345240042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4840608604345698285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e00203c3470ae346ad1fd9f76ac8151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlsPanel: {fileID: 0}
+  exitVehicleButton: ExitVehicle
+  cameraRotateButton: CameraRotate
+  _steeringAxis: Horizontal
+  _pedalAxis: Vertical
+  _throttleAxis: 
+  _brakeReverseAxis: 
+  _handbrakeButton: Jump
+--- !u!114 &1918199835100186439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4840608604345698285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab34ba0e5291794db8dd40187375845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlsPanel: {fileID: 0}
+  exitVehicleButton: ExitVehicle
+  cameraRotateButton: CameraRotate
+  _rollAxis: Horizontal
+  _pitchAxis: Vertical
+  _yawAxis: 
+  _throttleChangeAxis: 
+  _airbrakeButton: Jump
+  _throttleChangeSpeed: 0.3
+--- !u!114 &4630324811495614059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4840608604345698285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ab34ba0e5291794db8dd40187375845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlsPanel: {fileID: 0}
+  exitVehicleButton: ExitVehicle
+  cameraRotateButton: CameraRotate
+  _rollAxis: Horizontal
+  _pitchAxis: Vertical
+  _yawAxis: 
+  _throttleChangeAxis: 
+  _airbrakeButton: Jump
+  _throttleChangeSpeed: 0.3
