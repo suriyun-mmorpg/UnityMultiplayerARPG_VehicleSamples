@@ -98,6 +98,7 @@ namespace MultiplayerARPG
                 if (physics.Aircraft != null)
                 {
                     Check(physics.Aircraft.Throttle == 1f && physics.Aircraft.EnginePower > 0f, "Aircraft gets absolute engine power.");
+                    ValidateAircraftAudio(server.vehicle.gameObject);
                     physics.Aircraft.GetComponent<UnityStandardAssets.Vehicles.Aeroplane.LandingGear>()?.ApplyNetworkState(-1);
                     Snapshot(server, observer, 102, network, 2);
                     observer.movement.PhysicsController.ApplyTelemetry(observer.movement.Telemetry, Vector3.forward * 30f);
@@ -133,6 +134,21 @@ namespace MultiplayerARPG
                 if (previous.IsValid() && previous.isLoaded) SceneManager.SetActiveScene(previous);
                 EditorSceneManager.CloseScene(scene, true);
             }
+        }
+
+        private static void ValidateAircraftAudio(GameObject aircraft)
+        {
+            var audio = aircraft.GetComponent<UnityStandardAssets.Vehicles.Aeroplane.AeroplaneAudio>();
+            Check(audio != null && audio.enabled, "Aircraft audio component is present and enabled.");
+            Invoke(audio, "Awake");
+            Invoke(audio, "OnEnable");
+            var sources = aircraft.GetComponents<AudioSource>();
+            Check(sources.Length == 2 && sources.All(source => source.clip != null && source.loop && source.spatialBlend == 1f), "Aircraft has spatial engine and wind loops with valid clips.");
+            Check(sources[0].volume > 0f && sources[0].volume <= 0.5f, "Engine power produces audible volume respecting master gain.");
+            Invoke(audio, "OnDisable");
+            Check(sources.All(source => !source.isPlaying), "Disabling aircraft stops both audio loops.");
+            Invoke(audio, "OnEnable");
+            Check(sources.All(source => source.isPlaying), "Reactivating a spawned aircraft restarts both loops.");
         }
 
         private static void ValidatePhysics(string name)

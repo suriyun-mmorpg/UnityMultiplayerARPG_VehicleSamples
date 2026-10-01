@@ -32,14 +32,12 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
         private AudioSource m_EngineSoundSource;  // Reference to the AudioSource for the engine.
         private AudioSource m_WindSoundSource;    // Reference to the AudioSource for the wind.
         private AeroplaneController m_Plane;      // Reference to the aeroplane controller.
-        private Rigidbody m_Rigidbody;
 
 
         private void Awake()
         {
             // Set up the reference to the aeroplane controller.
             m_Plane = GetComponent<AeroplaneController>();
-            m_Rigidbody = GetComponent<Rigidbody>();
 
 
             // Add the audiosources and get the references.
@@ -56,19 +54,30 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
             m_EngineSoundSource.minDistance = m_AdvancedSetttings.engineMinDistance;
             m_EngineSoundSource.maxDistance = m_AdvancedSetttings.engineMaxDistance;
             m_EngineSoundSource.loop = true;
+            m_EngineSoundSource.spatialBlend = 1f;
             m_EngineSoundSource.dopplerLevel = m_AdvancedSetttings.engineDopplerLevel;
 
             m_WindSoundSource.minDistance = m_AdvancedSetttings.windMinDistance;
             m_WindSoundSource.maxDistance = m_AdvancedSetttings.windMaxDistance;
             m_WindSoundSource.loop = true;
+            m_WindSoundSource.spatialBlend = 1f;
             m_WindSoundSource.dopplerLevel = m_AdvancedSetttings.windDopplerLevel;
 
-            // call update here to set the sounds pitch and volumes before they actually play
-            Update();
+        }
 
-            // Start the sounds playing.
-            m_EngineSoundSource.Play();
-            m_WindSoundSource.Play();
+        private void OnEnable()
+        {
+            // Network scene spawning and pooling deactivate the object after Awake.
+            // Deactivation stops AudioSources, so restart loops on every activation.
+            Update();
+            if (m_EngineSoundSource.clip != null) m_EngineSoundSource.Play();
+            if (m_WindSoundSource.clip != null) m_WindSoundSource.Play();
+        }
+
+        private void OnDisable()
+        {
+            if (m_EngineSoundSource != null) m_EngineSoundSource.Stop();
+            if (m_WindSoundSource != null) m_WindSoundSource.Stop();
         }
 
 
@@ -85,8 +94,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
             m_EngineSoundSource.pitch += m_Plane.ForwardSpeed*m_EngineFwdSpeedMultiplier;
 
             // Set the engine's volume to be proportional to the engine's current power.
-            m_EngineSoundSource.volume = Mathf.InverseLerp(0, m_Plane.MaxEnginePower*m_AdvancedSetttings.engineMasterVolume,
-                                                         m_Plane.EnginePower);
+            m_EngineSoundSource.volume = enginePowerProportion * m_AdvancedSetttings.engineMasterVolume;
 
             // Set the wind's pitch and volume to be proportional to the aeroplane's forward speed.
             float planeSpeed = m_Plane.NetworkVelocity.magnitude;
